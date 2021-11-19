@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    android:padding="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    cardView:cardBackgroundColor="@color/lightBlue"
+    cardView:cardCornerRadius="8dp"
+    cardView:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/enclosure"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/titleA"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/shortContentA"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:text="Content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:textSize="11sp"
+            android:textStyle="italic"
+            android:text="12.23.20021"
+            android:gravity="right"
+            android:paddingRight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -133,23 +133,30 @@ class MainFragment : Fragment() {
 
     private suspend fun loadRss() {
 
-        withContext(Dispatchers.IO)
+        if(rssLink != "")
         {
-            var inputStream: InputStream? = null
-            try {
-                val url = URL(rssLink)
-                val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
-                if (connection.responseCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = connection.inputStream
-                    val parser = HTTPDataHandler()
-                    rssItems = ArrayList(parser.getHTTPData(inputStream!!))
+            withContext(Dispatchers.IO)
+            {
+                var inputStream: InputStream? = null
+                try {
+                    val url = URL(rssLink)
+                    val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
+                    if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+                        inputStream = connection.inputStream
+                        val parser = HTTPDataHandler()
+                        rssItems = ArrayList(parser.getHTTPData(inputStream!!))
+                    }
+                    connection.disconnect()
+                } catch (e: Exception) {
+                    Log.e(tag, e.toString())
                 }
-                connection.disconnect()
-            } catch (e: Exception) {
-                Log.e(tag, e.toString())
             }
-        }
         adapterM.updateList(rssItems)
+        }
+        else
+        {
+            rssItems = ArrayList()
+        }
     }
 
      fun updateArticles()

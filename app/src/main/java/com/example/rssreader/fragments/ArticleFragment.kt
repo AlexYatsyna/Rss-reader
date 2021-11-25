@@ -36,20 +36,21 @@ class ArticleFragment : AppCompatActivity() {
                 view: WebView?,
                 request: WebResourceRequest?
             ): Boolean {
-                var name = (curUrl.split("//"))[1].split("/")[0]
-                var url = request?.url.toString()
+                var name = Uri.parse(curUrl).host.toString()
+                var link = request?.url
+                var url = request?.url?.host
 
-                if(url.contains("//"))
-                    url = url.split("//")[1]
-                if(url.contains('?'))
-                    url= url.split('?')[0]
-                if(url.contains('/'))
-                    url=url.split('/')[0]
-                if(url.contains('@'))
-                    return true
 
-                if(url.contains(name))
-                    return false
+                if (url != null) {
+                    return if(url.contains(name)) {
+                        false
+                    } else{
+                        Intent(Intent.ACTION_VIEW, link).apply {
+                            startActivity(this)
+                        }
+                        true
+                    }
+                }
                 return true
             }
 
